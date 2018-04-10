@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+</head>
+<body>
+
+
+ <section>
+                <!--for demo wrap-->
+                <h1>What time will you get your train?</h1>
+                <div class="tbl-header">
+                  <table cellpadding="0" cellspacing="0" border="0">
+                    <thead>
+                      <tr>
+
+
+                            <th >Train Name</th>
+                            <th>Destination</th>
+                            <th >Frequency</th>
+                            <th >Next Arrival</th>
+                            <th >Minute Away</th>
+                       
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+                <div class="tbl-content">
+                  <table cellpadding="0" cellspacing="0" border="0">
+                        <tbody id="trainSchedule">
+                                <!-- <tr>
+                                  <th scope="row">1</th>
+                                  <td>Mark</td>
+                                  <td>Otto</td>
+                                  <td>@mdo</td>
+                                </tr> -->
+                               
+                              </tbody>
+                  </table>
+                </div>
+              </section>
+              
+              
+              <!-- follow me template -->
+              <div id="inputInfo">
+                  <div id="divHead">
+                        Add Train
+                  </div>
+
+
+                  <form>
+                        <div id="row1">
+                             <div id="label">
+                          <label>Train Name</label>
+                          </div>
+                          <div id="inputText">
+                            <input type="text"  id="trainNameInput" placeholder="Train Name">
+                          </div>
+                          <div id="label">
+                                <label>Destination</label></div>
+                                <div id="inputText">
+                                  <input type="text" id="destinationInput" placeholder="Destination">
+                                </div>
+                              
+                        </div>
+                        <!-- <div>
+                          <label>Destination</label>
+                          <div>
+                            <input type="text" id="destinationInput" placeholder="Destination">
+                          </div>
+                        </div> -->
+                        <div id="row1">
+                            <div id="label">
+                                <label>First Train Time</label>
+                            </div>
+                            <div id="inputText">  
+                                  <input type="text" id="firstTrainInput" placeholder="First Train Time">
+                                </div>
+                                <div id="label">
+                                <label>Frequency</label>
+                                </div>
+                                <div id="inputText">  
+                                    <input type="text" id="frequencyInput" placeholder="Frequency">
+                            </div>
+                            
+                        </div>
+                        
+                        <div id="row1">
+                         
+                            <button type="submit" id="addTrain">Submit</button>
+                          
+                        </div>
+                      </form>
+
+
+
+
+              </div>
+             
+
+
+
+
+
+
+
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                    <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                <th scope="col">Train Name</th>
+                                <th scope="col">Destination</th>
+                                <th scope="col">Frequency</th>
+                                <th scope="col">Next Arrival</th>
+                                <th scope="col">Minute Away</th>
+                              </tr>
+                            </thead>
+                            <tbody id="trainSchedule"> -->
+                              <!-- <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                              </tr> -->
+<!--                              
+                            </tbody>
+                          </table>
+
+            </div>
+        </div>
+        <div class="row border">
+            <div class="col-md-12">
+                    <form>
+                            <div class="form-group row">
+                              <label class="col-sm-2 col-form-label">Train Name</label>
+                              <div class="col-sm-10">
+                                <input type="text" class="form-control" id="trainNameInput" placeholder="Train Name">
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-sm-2 col-form-label">Destination</label>
+                              <div class="col-sm-10">
+                                <input type="text" class="form-control" id="destinationInput" placeholder="Destination">
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">First Train Time</label>
+                                    <div class="col-sm-10">
+                                      <input type="text" class="form-control" id="firstTrainInput" placeholder="First Train Time">
+                                    </div>
+                            </div>
+                            <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Frequency</label>
+                                    <div class="col-sm-10">
+                                      <input type="text" class="form-control" id="frequencyInput" placeholder="Frequency">
+                                    </div>
+                            </div>
+                            <div class="form-group row">
+                              <div class="col-sm-10">
+                                <button type="submit" id="addTrain" class="btn btn-primary">Submit</button>
+                              </div>
+                            </div>
+                          </form>
+
+            </div>
+
+        </div>
+    </div> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascript/Moment.js"></script>
+</body>
+</html>
