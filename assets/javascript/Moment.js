@@ -12,7 +12,7 @@ var config = {
 //   function showAll(){
 
 //   }
-
+//var interval=setInterval(updateRecords,60000);
 function checkTime()
 {
     //console.log($("#firstTrainInput"));//document.forms[0].elements[2].value);
@@ -44,7 +44,7 @@ function checkTime()
     //     errorMsg = "Invalid value for minutes: " + regs[2];
     //   }
     } if(regs==null) {
-      errorMsg = "Invalid time format: " + field;
+      errorMsg = "Invalid time format, you need to follow the format HH:MM " + field;
     }
   
 
@@ -71,7 +71,7 @@ function checkNumber()
         return true;
         //errorMsg = "Invalid value for format2: " ;
     }
-    else{errorMsg = "Invalid value for format2: " ;}
+    else{errorMsg = "Invalid value for minute, you need to insert numbers: " ;}
 }
 
   if(errorMsg != "") {
@@ -147,8 +147,8 @@ function checkNumber()
     $("#trainSchedule").append("<tr><td>"+sv.trainName+"</td>"+
                                     "<td>"+sv.destination+"</td>"+
                                     "<td>"+sv.frequency+"</td>"+
-                                    "<td>"+arrive.substr(0,5)+"</td>"+
-                                    "<td>"+arrive.substr(6)+"</td>"+
+                                    "<td class='nextArrive'>"+arrive.substr(0,5)+"</td>"+
+                                    "<td class='minAway'>"+arrive.substr(6)+"</td>"+
     "</tr>");
   });
 
@@ -183,9 +183,108 @@ function checkNumber()
      var arriveHour =Math.floor(arriveTotalMins/60);
      var arriveMin = arriveTotalMins%60;
 
-     var arrive = arriveHour.toString()+ ":"+ arriveMin.toString() + "*"+ arriveMins;
+     var tempArrive=arriveHour.toString()+ ":"+ arriveMin.toString();
+     if(tempArrive.length<5){
+      var index=tempArrive.indexOf(":");
+      console.log("index"+index);
+      var h="";
+      var m = "";
+      console.log("index"+index);
+      h = tempArrive.substr(0,index);
+      m = tempArrive.substr(index+1);
+      console.log("h0"+h);
+      console.log("m0"+m);
+      if(h.length < 2){
+      
+         h="0"+h;
+      }
+      if(m.length<2){
+     
+         m="0"+m;
+      }
+     
+      console.log("h"+h);
+      console.log("m"+m);
+      tempArrive=h+":"+m;
+  }
+  
+
+
+
+
+
+
+     var arrive = tempArrive + "*"+ arriveMins;
    //  return arrive;
       console.log("arriveHour"+arriveHour );
       console.log("arriveMin"+arriveMin );
     return arrive;
+ }
+
+ function updateRecords(){
+  $("#trainSchedule").empty();
+  database.ref().once("value",function(snapshot){
+    //var sv =snapshot.val(); 
+    //$(".nextArrive").empty();
+    
+    snapshot.forEach(function (child) {
+        console.log(child.val().destination);//console.log(‘user’, childSnap.val());
+        var tempTr= $("<tr>");
+        var tempTd1=$("<td>");
+        //tempTd1.addClass("nextArrive");
+        
+        var tempTd2  = $("<td>");
+        //tempTd2.addClass("minAway");
+        
+        var tempTd3=$("<td>");
+        var tempTd4=$("<td>");
+        var tempTd5=$("<td>");
+        var arrive = nextArrival(child.val().firstTrain,child.val().frequency);
+        tempTd1.val(child.val().trainName);
+        tempTd2.val(child.val().destination);
+        tempTd3.val(child.val().frequency);
+        tempTd4.val(arrive.substr(0,5));
+        tempTd5.val(arrive.substr(6));
+
+        tempTr.append(tempTd1);
+        tempTr.append(tempTd2);
+        tempTr.append(tempTd3);
+        tempTr.append(tempTd4);
+        tempTr.append(tempTd5);
+        $("#trainSchedule").append(tempTr);
+
+      });
+
+    // var sv=snapshot.val();
+    //   console.log(svestination);
+    //   console.log(sv.trainName);
+    //   console.log(sv.frequency);
+    //   console.log(sv.firstTrain);
+      
+    //   var arrive = nextArrival(sv.firstTrain,sv.frequency);
+    // $("#trainSchedule").append("<tr><td>"+sv.trainName+"</td>"+
+    //                                 "<td>"+sv.destination+"</td>"+
+    //                                 "<td>"+sv.frequency+"</td>"+
+    //                                 "<td>"+arrive.substr(0,5)+"</td>"+
+    //                                 "<td>"+arrive.substr(6)+"</td>"+
+    // "</tr>");
+    // // console.log(sv.destination);
+    //   console.log(sv.trainName);
+    //   console.log(sv.frequency);
+    //   console.log(sv.firstTrain);
+    // && snapshot.val().username) || 'Anonymous';
+    // ...
+  });
+    // database.ref().once("value", function(snapshot){
+    //     var sv=snapshot.val();
+    //     var arrive = nextArrival(sv.firstTrain,sv.frequency);
+    // 
+    //$("#trainSchedule").append("<tr><td>"+sv.trainName+"</td>"+
+    //                                 "<td>"+sv.destination+"</td>"+
+    //                                 "<td>"+sv.frequency+"</td>"+
+    //                                 "<td>"+arrive.substr(0,5)+"</td>"+
+    //                                 "<td>"+arrive.substr(6)+"</td>"+
+    // "</tr>");
+    // });
+    console.log("Salam Salam");
  }
