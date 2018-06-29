@@ -9,28 +9,19 @@ var config = {
   firebase.initializeApp(config);
 
   var database = firebase.database();
-//   function showAll(){
 
-//   }
-//var interval=setInterval(updateRecords,60000);
 function checkTime()
 {
-    //console.log($("#firstTrainInput"));//document.forms[0].elements[2].value);
+    
   var errorMsg = "";
  var field=document.forms[0].elements[2].value;
-  // regular expression to match required time format
+  
   re = /^(\d{1,2}):(\d{1,2})$/;
   regs = field.match(re);
-  //console.log(regs[1]);
+ 
   if(field != '') {
     if(regs) {
-    //   if(regs[4]) {
-    //     // 12-hour time format with am/pm
-    //     if(regs[1] < 1 || regs[1] > 12) {
-    //       errorMsg = "Invalid value for hours: " + regs[1];
-    //     }
-    //   } else {
-        // 24-hour time format
+    
         console.log("regs[1]"+regs[1]);
         console.log("regs[2]"+regs[2]);
         if(regs[1] > 23) {
@@ -40,9 +31,7 @@ function checkTime()
             errorMsg = "Invalid value for minutes: " + regs[2];
           }
       }
-    //   if(!errorMsg && regs[2] > 59) {
-    //     errorMsg = "Invalid value for minutes: " + regs[2];
-    //   }
+    
     } if(regs==null) {
       errorMsg = "Invalid time format, you need to follow the format HH:MM " + field;
     }
@@ -61,7 +50,7 @@ function checkNumber()
     console.log(document.forms[0].elements[3].value);
   var errorMsg = "";
  var field=document.forms[0].elements[3].value;
-  // regular expression to match required time format
+ 
   re = /^\d+/;
   regs = field.match(re);
   console.log(re);
@@ -69,7 +58,7 @@ function checkNumber()
   if(field != '') {
     if(field.match(re) ) {
         return true;
-        //errorMsg = "Invalid value for format2: " ;
+        
     }
     else{errorMsg = "Invalid value for minute, you need to insert numbers: " ;}
 }
@@ -152,9 +141,7 @@ function checkNumber()
     "</tr>");
   });
 
-//   database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added",function(){
 
-//   });
  function nextArrival(firstTrain, frequency){
     var current =new Date();
     var curHour=current.getHours();
@@ -224,17 +211,16 @@ function checkNumber()
  function updateRecords(){
   $("#trainSchedule").empty();
   database.ref().once("value",function(snapshot){
-    //var sv =snapshot.val(); 
-    //$(".nextArrive").empty();
+    
     
     snapshot.forEach(function (child) {
-        console.log(child.val().destination);//console.log(‘user’, childSnap.val());
+        console.log(child.val().destination);
         var tempTr= $("<tr>");
         var tempTd1=$("<td>");
-        //tempTd1.addClass("nextArrive");
+        
         
         var tempTd2  = $("<td>");
-        //tempTd2.addClass("minAway");
+        
         
         var tempTd3=$("<td>");
         var tempTd4=$("<td>");
@@ -255,36 +241,8 @@ function checkNumber()
 
       });
 
-    // var sv=snapshot.val();
-    //   console.log(svestination);
-    //   console.log(sv.trainName);
-    //   console.log(sv.frequency);
-    //   console.log(sv.firstTrain);
-      
-    //   var arrive = nextArrival(sv.firstTrain,sv.frequency);
-    // $("#trainSchedule").append("<tr><td>"+sv.trainName+"</td>"+
-    //                                 "<td>"+sv.destination+"</td>"+
-    //                                 "<td>"+sv.frequency+"</td>"+
-    //                                 "<td>"+arrive.substr(0,5)+"</td>"+
-    //                                 "<td>"+arrive.substr(6)+"</td>"+
-    // "</tr>");
-    // // console.log(sv.destination);
-    //   console.log(sv.trainName);
-    //   console.log(sv.frequency);
-    //   console.log(sv.firstTrain);
-    // && snapshot.val().username) || 'Anonymous';
-    // ...
+    
   });
-    // database.ref().once("value", function(snapshot){
-    //     var sv=snapshot.val();
-    //     var arrive = nextArrival(sv.firstTrain,sv.frequency);
-    // 
-    //$("#trainSchedule").append("<tr><td>"+sv.trainName+"</td>"+
-    //                                 "<td>"+sv.destination+"</td>"+
-    //                                 "<td>"+sv.frequency+"</td>"+
-    //                                 "<td>"+arrive.substr(0,5)+"</td>"+
-    //                                 "<td>"+arrive.substr(6)+"</td>"+
-    // "</tr>");
-    // });
-    console.log("Salam Salam");
+    
+
  }
